@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎟️ Lott India Lottery</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Russo+One&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0f0f0f, #000000 90%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      background: linear-gradient(to right, #ff00cc, #3333ff);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: white;
+      box-shadow: 0 0 20px #ff00cc;
+    }
+    header img {
+      width: 100px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 15px #fff;
+    }
+    header h1 {
+      font-family: 'Russo One', sans-serif;
+      font-size: 2.5rem;
+      text-shadow: 0 0 5px #fff;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #ffeeee;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 15px;
+      border: 2px solid #ff00cc;
+      box-shadow: 0 0 25px rgba(255,0,204,0.4);
+    }
+    .form-container h2 {
+      text-align: center;
+      color: #ff66ff;
+      margin-bottom: 1.5rem;
+    }
+    form input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #333;
+      color: #fff;
+    }
+    form button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(to right, #00ffe7, #8e2de2);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffe7;
+      transition: transform 0.2s ease;
+    }
+    form button:hover {
+      transform: scale(1.05);
+    }
+
+    .ticket-info {
+      text-align: center;
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
+    .ticket-count {
+      font-size: 2.2rem;
+      color: #00ff99;
+      text-shadow: 0 0 10px #00ff99;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #222;
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 400px;
+      border: 2px solid #ff00cc;
+      color: #fff;
+      text-align: left;
+    }
+    .modal-content ul {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    #scannerSection {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    #scannerSection img {
+      width: 250px;
+      border-radius: 10px;
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px #0ff;
+      margin-bottom: 1rem;
+    }
+
+    .send-whatsapp, #whatsappLink {
+      display: block;
+      margin: 1rem auto;
+      padding: 1rem;
+      width: 90%;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .send-whatsapp {
+      background: linear-gradient(to right, #ff00cc, #3333ff);
+      color: white;
+    }
+    #whatsappLink {
+      background: #25D366;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      background: #111;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="assets/logo.png" alt="Lott India Logo">
+    <h1>Lott India Lottery</h1>
+    <p>Win a 🐶 Shih Tzu Puppy — Only ₹150!</p>
+  </header>
+
+  <section class="form-container">
+    <h2>Buy Your Ticket</h2>
+    <form id="lotteryForm">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="tel" name="mobile" placeholder="Mobile Number" required />
+      <input type="text" name="address" placeholder="Address" required />
+      <input type="email" name="email" placeholder="Gmail ID" required />
+      <button type="submit">Proceed to Buy</button>
+    </form>
+    <div class="ticket-info">
+      Tickets Left: <span class="ticket-count" id="ticketsLeft">Loading...</span>
+    </div>
+  </section>
+
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <h3>Terms & Conditions</h3>
+      <ul>
+        <li>Only 200 tickets available.</li>
+        <li>1 Lucky Winner receives a Shih Tzu Puppy.</li>
+        <li>Delivery within India only.</li>
+        <li>No refunds once ticket is bought.</li>
+        <li>Result will be shared in WhatsApp Group only.</li>
+      </ul>
+      <label><input type="checkbox" id="acceptTerms"> I accept the terms & conditions</label>
+      <button id="proceedPayment">Show Payment Scanner</button>
+    </div>
+  </div>
+
+  <section id="scannerSection">
+    <h2>Scan & Pay ₹150</h2>
+    <img src="assets/scanner.jpg" alt="QR Code Scanner" />
+    <a href="#" id="sendWhatsapp" class="send-whatsapp" target="_blank">Send Ticket on WhatsApp</a>
+    <a href="https://chat.whatsapp.com/YOUR-GROUP-LINK" id="whatsappLink" target="_blank">Join WhatsApp Group</a>
+  </section>
+
+  <footer>
+    © 2025 Lott India Lottery. All rights reserved. <br>
+    Designed for fun, transparency & excitement.
+  </footer>
+
+  <script>
+    let ticketsLeft = parseInt(localStorage.getItem('ticketsLeft')) || 200;
+    let currentTicket = parseInt(localStorage.getItem('currentTicket')) || 102025001;
+
+    document.getElementById("ticketsLeft").innerText = ticketsLeft;
+
+    document.getElementById("lotteryForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (ticketsLeft <= 0) {
+        alert("Sorry, all tickets are sold out.");
+        return;
+      }
+      document.getElementById("paymentModal").style.display = "flex";
+    });
+
+    document.getElementById("proceedPayment").addEventListener("click", function () {
+      if (!document.getElementById("acceptTerms").checked) {
+        alert("Please accept the terms to proceed.");
+        return;
+      }
+
+      const form = document.forms["lotteryForm"];
+      const user = {
+        name: form.name.value,
+        mobile: form.mobile.value,
+        address: form.address.value,
+        email: form.email.value,
+        ticket: currentTicket
+      };
+
+      localStorage.setItem("lastUser", JSON.stringify(user));
+      ticketsLeft--;
+      currentTicket++;
+
+      localStorage.setItem("ticketsLeft", ticketsLeft);
+      localStorage.setItem("currentTicket", currentTicket);
+      document.getElementById("ticketsLeft").innerText = ticketsLeft;
+
+      document.getElementById("paymentModal").style.display = "none";
+      document.getElementById("scannerSection").style.display = "block";
+
+      form.reset();
+    });
+
+    document.getElementById("sendWhatsapp").addEventListener("click", function () {
+      let user = JSON.parse(localStorage.getItem("lastUser"));
+      if (!user) return alert("No ticket found.");
+
+      const message = `Hi, I just purchased a Lott India Lottery ticket.%0A%0AName: ${encodeURIComponent(user.name)}%0ATicket No: ${user.ticket}%0AMobile: ${user.mobile}%0AEmail: ${encodeURIComponent(user.email)}`;
+      
+      const yourWhatsAppNumber = "91XXXXXXXXXX"; // replace with your number
+      const url = `https://wa.me/${yourWhatsAppNumber}?text=${message}`;
+      window.open(url, "_blank");
+    });
+
+    window.onclick = function(e) {
+      const modal = document.getElementById("paymentModal");
+      if (e.target === modal) modal.style.display = "none";
+    };
+  </script>
+</body>
+</html>

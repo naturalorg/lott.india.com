@@ -1,0 +1,160 @@
+/* style.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7f9fc;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  background: linear-gradient(135deg, #ff8a00, #e52e71);
+  color: white;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.logo {
+  max-width: 120px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #e52e71;
+}
+
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  width: 90%;
+  max-width: 400px;
+}
+
+form input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #e52e71;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #c41c5c;
+}
+
+.ticket-info {
+  margin: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+#scannerSection {
+  display: none;
+  text-align: center;
+  margin: 2rem;
+}
+
+#scannerSection img {
+  width: 250px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#downloadTicket, #whatsappLink {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 1.2rem;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#whatsappLink {
+  background: #25d366;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f1f1f1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.modal-content ul {
+  padding-left: 1.2rem;
+}
+
+.modal-content button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
