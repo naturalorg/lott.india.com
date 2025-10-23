@@ -182,6 +182,7 @@
     </div>
   </section>
 
+  <!-- Terms & Conditions Modal -->
   <div id="paymentModal" class="modal">
     <div class="modal-content">
       <h3>Terms & Conditions</h3>
@@ -193,7 +194,17 @@
         <li>Result will be shared in WhatsApp Group only.</li>
       </ul>
       <label><input type="checkbox" id="acceptTerms"> I accept the terms & conditions</label>
-      <button id="proceedPayment">Show Payment Scanner</button>
+      <button id="proceedPayment">Proceed</button>
+    </div>
+  </div>
+
+  <!-- Google Form Modal -->
+  <div id="googleFormModal" class="modal">
+    <div class="modal-content">
+      <h3>Complete the Google Form</h3>
+      <p>Please fill out the quick form below to confirm your ticket:</p>
+      <iframe src="https://forms.gle/nV1AqNDjoSUvE9i49" width="100%" height="500" frameborder="0">Loading…</iframe>
+      <button id="formSubmittedBtn">I have submitted the form</button>
     </div>
   </div>
 
@@ -248,9 +259,14 @@
       document.getElementById("ticketsLeft").innerText = ticketsLeft;
 
       document.getElementById("paymentModal").style.display = "none";
-      document.getElementById("scannerSection").style.display = "block";
+      document.getElementById("googleFormModal").style.display = "flex";
 
       form.reset();
+    });
+
+    document.getElementById("formSubmittedBtn").addEventListener("click", function() {
+      document.getElementById("googleFormModal").style.display = "none";
+      document.getElementById("scannerSection").style.display = "block";
     });
 
     document.getElementById("sendWhatsapp").addEventListener("click", function () {
@@ -259,14 +275,16 @@
 
       const message = `Hi, I just purchased a Lott India Lottery ticket.%0A%0AName: ${encodeURIComponent(user.name)}%0ATicket No: ${user.ticket}%0AMobile: ${user.mobile}%0AEmail: ${encodeURIComponent(user.email)}`;
       
-      const yourWhatsAppNumber = "91XXXXXXXXXX"; // replace with your number
+      const yourWhatsAppNumber = "916366813443"; // replace with your number
       const url = `https://wa.me/${yourWhatsAppNumber}?text=${message}`;
       window.open(url, "_blank");
     });
 
     window.onclick = function(e) {
-      const modal = document.getElementById("paymentModal");
-      if (e.target === modal) modal.style.display = "none";
+      const modal1 = document.getElementById("paymentModal");
+      const modal2 = document.getElementById("googleFormModal");
+      if (e.target === modal1) modal1.style.display = "none";
+      if (e.target === modal2) modal2.style.display = "none";
     };
   </script>
 </body>
