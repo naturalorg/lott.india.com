@@ -182,28 +182,85 @@
     </div>
   </section>
 
-  <!-- Terms & Conditions Modal -->
-  <div id="paymentModal" class="modal">
-    <div class="modal-content">
-      <h3>Terms & Conditions</h3>
-      <ul>
-        <li>Only 200 tickets available.</li>
-        <li>1 Lucky Winner receives a Shih Tzu Puppy.</li>
-        <li>Delivery within India only.</li>
-        <li>No refunds once ticket is bought.</li>
-        <li>Result will be shared in WhatsApp Group only.</li>
-      </ul>
-      <label><input type="checkbox" id="acceptTerms"> I accept the terms & conditions</label>
-      <button id="proceedPayment">Proceed</button>
-    </div>
+<!-- Terms & Conditions Modal -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <h3>Terms & Conditions</h3>
+    <ul>
+      <li>Only 200 tickets available.</li>
+      <li>1 Lucky Winner receives a Shih Tzu Puppy.</li>
+      <li>Delivery within India only.</li>
+      <li>No refunds once ticket is bought.</li>
+      <li>Result will be shared in WhatsApp Group only.</li>
+    </ul>
+
+    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-top: 0.5rem;">
+      <input type="checkbox" id="acceptTerms" style="accent-color: #ff00cc; width: 18px; height: 18px;">
+      I accept the terms & conditions
+    </label>
+
+    <!-- 💎 Beautiful Neon Proceed Button -->
+    <button id="proceedPayment" class="glow-btn">Proceed</button>
   </div>
+</div>
+
+<!-- Google Form Modal -->
+<div id="googleFormModal" class="modal">
+  <div class="modal-content">
+    <h3>Confirm Your Details</h3>
+    <p>Please fill this quick Google Form to confirm your ticket info:</p>
+    <iframe 
+      src="https://forms.gle/6emrEc9BriypBTju5"
+      width="100%" height="480" frameborder="0" marginheight="0" marginwidth="0">
+      Loading…
+    </iframe>
+    <!-- ✨ Matching Neon Button for After Form Submission -->
+    <button id="formSubmittedBtn" class="glow-btn">I have submitted the Google Form</button>
+  </div>
+</div>
+
+
+<style>
+  /* ✨ Glowing neon animated button for Terms modal */
+  .glow-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffee);
+    background-size: 300% 300%;
+    animation: gradientGlow 4s ease infinite;
+    box-shadow: 0 0 15px rgba(255,0,255,0.6), 0 0 30px rgba(51,51,255,0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .glow-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,0,255,0.8), 0 0 50px rgba(51,51,255,0.6);
+  }
+
+  @keyframes gradientGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+
 
   <!-- Google Form Modal -->
   <div id="googleFormModal" class="modal">
     <div class="modal-content">
       <h3>Complete the Google Form</h3>
       <p>Please fill out the quick form below to confirm your ticket:</p>
-      <iframe src="https://forms.gle/nV1AqNDjoSUvE9i49" width="100%" height="500" frameborder="0">Loading…</iframe>
+      <iframe src="https://forms.gle/6emrEc9BriypBTju5" width="100%" height="500" frameborder="0">Loading…</iframe>
       <button id="formSubmittedBtn">I have submitted the form</button>
     </div>
   </div>
